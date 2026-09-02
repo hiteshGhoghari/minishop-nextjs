@@ -1,6 +1,11 @@
 import Link from "next/link";
-
+export const metadata = {
+  title: "Home",
+  description:
+    "Welcome to MiniShop. Find great products at affordable prices.",
+};
 export default function Home() {
+
   return (
     <main>
       {/* Hero */}

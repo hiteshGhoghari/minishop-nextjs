@@ -1,11 +1,15 @@
 "use client";
 
 import { useState } from "react";
+import { useCart } from "@/context/CartContext";
 
 export default function AddToCartButton({ product }) {
     const [added, setAdded] = useState(false);
+    const { addToCart } = useCart();
+
 
     const handleAddToCart = () => {
+        addToCart(product);
         setAdded(true);
 
         setTimeout(() => {

@@ -1,4 +1,4 @@
-import ProductCard from "@/components/ProductCard";
+import ProductFilters from "@/components/ProductFilters";
 import { getProducts } from "@/lib/api";
 
 
@@ -35,14 +35,7 @@ export default async function ProductsPage() {
 
             {/* Product Listing */}
             <section className="mx-auto max-w-7xl px-4 py-10 sm:py-12">
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                    {products.map((product) => (
-                        <ProductCard
-                            key={product.id}
-                            product={product}
-                        />
-                    ))}
-                </div>
+                <ProductFilters products={products} />
             </section>
 
         </main>
