@@ -1,11 +1,15 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function ProductCard({ product }) {
     return (
         <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white transition duration-300 hover:-translate-y-1 hover:shadow-xl">
 
             {/* Product Image */}
-            <div className="relative aspect-square overflow-hidden bg-gray-50">
+            <Link
+                href={`/products/${product.id}`}
+                className="relative block aspect-square overflow-hidden bg-gray-50"
+            >
                 <Image
                     src={product.image}
                     alt={product.title}
@@ -13,7 +17,7 @@ export default function ProductCard({ product }) {
                     className="object-contain p-6 transition duration-500 group-hover:scale-105"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
                 />
-            </div>
+            </Link>
 
             {/* Product Content */}
             <div className="flex flex-1 flex-col p-5">
@@ -24,9 +28,11 @@ export default function ProductCard({ product }) {
                 </p>
 
                 {/* Title */}
-                <h2 className="line-clamp-2 min-h-[48px] text-base font-semibold leading-6 text-gray-900">
-                    {product.title}
-                </h2>
+                <Link href={`/products/${product.id}`}>
+                    <h2 className="line-clamp-2 min-h-[48px] text-base font-semibold leading-6 text-gray-900 hover:underline">
+                        {product.title}
+                    </h2>
+                </Link>
 
                 {/* Bottom */}
                 <div className="mt-auto flex items-center justify-between gap-3 pt-5">
