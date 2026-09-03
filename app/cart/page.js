@@ -82,6 +82,7 @@ export default function CartPage() {
                                             src={item.image}
                                             alt={item.title}
                                             fill
+                                            unoptimized
                                             className="object-contain p-3"
                                             sizes="128px"
                                         />

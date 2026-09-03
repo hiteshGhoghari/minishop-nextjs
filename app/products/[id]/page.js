@@ -33,6 +33,7 @@ export default async function ProductDetailsPage({ params }) {
                             src={product.image}
                             alt={product.title}
                             fill
+                            unoptimized
                             className="object-contain p-10"
                             sizes="(max-width: 768px) 100vw, 50vw"
                         />

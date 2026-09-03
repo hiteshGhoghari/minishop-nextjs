@@ -1,7 +1,16 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useCart } from "@/context/CartContext";
+
+const FALLBACK_IMAGE = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 24 24' fill='none' stroke='%239CA3AF' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='3' width='18' height='18' rx='2' ry='2'/><circle cx='8.5' cy='8.5' r='1.5'/><polyline points='21 15 16 10 5 21'/></svg>";
 
 export default function ProductCard({ product }) {
+    const { addToCart } = useCart();
+    const [imgSrc, setImgSrc] = useState(product.image);
+
     return (
         <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white transition duration-300 hover:-translate-y-1 hover:shadow-xl">
 
@@ -11,9 +20,11 @@ export default function ProductCard({ product }) {
                 className="relative block aspect-square overflow-hidden bg-gray-50"
             >
                 <Image
-                    src={product.image}
+                    src={imgSrc}
                     alt={product.title}
                     fill
+                    unoptimized
+                    onError={() => setImgSrc(FALLBACK_IMAGE)}
                     className="object-contain p-6 transition duration-500 group-hover:scale-105"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
                 />
@@ -43,6 +54,7 @@ export default function ProductCard({ product }) {
 
                     <button
                         type="button"
+                        onClick={() => addToCart(product)}
                         className="rounded-lg bg-black px-4 py-2 text-sm font-medium text-white transition hover:bg-gray-800 active:scale-95"
                     >
                         Add to Cart
@@ -52,4 +64,4 @@ export default function ProductCard({ product }) {
             </div>
         </article>
     );
-}
+}
